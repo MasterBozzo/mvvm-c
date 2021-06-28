@@ -23,6 +23,7 @@
 		84FDFF232686392300B7AF5B /* AddEventCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FDFF222686392300B7AF5B /* AddEventCoordinator.swift */; };
 		84FDFF28268645B100B7AF5B /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FDFF27268645B100B7AF5B /* AddEventViewController.swift */; };
 		84FDFF2D268646BC00B7AF5B /* AddEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FDFF2C268646BC00B7AF5B /* AddEventViewModel.swift */; };
+		84FDFF5F268A2F7D00B7AF5B /* AddEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FDFF5E268A2F7D00B7AF5B /* AddEventView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		84FDFF222686392300B7AF5B /* AddEventCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventCoordinator.swift; sourceTree = "<group>"; };
 		84FDFF27268645B100B7AF5B /* AddEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
 		84FDFF2C268646BC00B7AF5B /* AddEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventViewModel.swift; sourceTree = "<group>"; };
+		84FDFF5E268A2F7D00B7AF5B /* AddEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 				84FDFF372686558900B7AF5B /* ViewModels */,
 				84FDFF092684FEB300B7AF5B /* Extensions */,
 				84FDFF0A2684FEC100B7AF5B /* Controllers */,
+				84FDFF5D268A2F6500B7AF5B /* Views */,
 				84FDFF0B2684FEC900B7AF5B /* Coordinators */,
 				84FDFEBF2684E78E00B7AF5B /* AppDelegate.swift */,
 				84FDFEC12684E78E00B7AF5B /* SceneDelegate.swift */,
@@ -182,6 +185,14 @@
 				84FDFF2C268646BC00B7AF5B /* AddEventViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		84FDFF5D268A2F6500B7AF5B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				84FDFF5E268A2F7D00B7AF5B /* AddEventView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -318,6 +329,7 @@
 				84FDFEC02684E78E00B7AF5B /* AppDelegate.swift in Sources */,
 				84FDFF022684F77100B7AF5B /* UIColor+Extensions.swift in Sources */,
 				84FDFEC22684E78E00B7AF5B /* SceneDelegate.swift in Sources */,
+				84FDFF5F268A2F7D00B7AF5B /* AddEventView.swift in Sources */,
 				84FDFF2D268646BC00B7AF5B /* AddEventViewModel.swift in Sources */,
 				84FDFF232686392300B7AF5B /* AddEventCoordinator.swift in Sources */,
 				84FDFEF82684EA9100B7AF5B /* EventListCoordinator.swift in Sources */,

@@ -10,8 +10,11 @@ import UIKit
 class AddEventViewController: UIViewController {
     
     var viewModel: AddEventViewModel!
+    var sharedView = AddEventView()
     
-    let tableView = UITableView()
+    override func loadView() {
+        view = sharedView
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
