@@ -26,7 +26,7 @@ class AddEventView: UIView {
     
     private func setupView() {
         self.addSubview(tableView)
-        tableView.backgroundColor = .yellow
+        self.backgroundColor = .white
         tableView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
         tableView.rightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.rightAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true

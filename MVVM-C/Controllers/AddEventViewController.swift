@@ -19,9 +19,7 @@ class AddEventViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        sharedView.tableView.dataSource = self
-        
-        sharedView.tableView.register(TitleSubtitleCell.self, forCellReuseIdentifier: "TitleSubtitleCell")
+        setupViews()
         
         viewModel.onUpdate = { [weak self] in
             self?.sharedView.tableView.reloadData()
@@ -34,6 +32,23 @@ class AddEventViewController: UIViewController {
         super.viewDidDisappear(animated)
         
         viewModel.viewDidDisappear()
+    }
+    
+    @objc func tappedDone() {
+        viewModel.tappedDone()
+    }
+    
+    private func setupViews() {
+        sharedView.tableView.dataSource = self
+        sharedView.tableView.register(TitleSubtitleCell.self, forCellReuseIdentifier: "TitleSubtitleCell")
+        sharedView.tableView.tableFooterView = UIView()
+        navigationItem.title = viewModel.title
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(tappedDone))
+        navigationController?.navigationBar.tintColor = .black
+        // to force large titles
+        navigationItem.largeTitleDisplayMode = .always
+        sharedView.tableView.setContentOffset(.init(x: 0, y: -1), animated: false)
     }
     
     deinit {
@@ -54,10 +69,25 @@ extension AddEventViewController: UITableViewDataSource {
         case .titleSubtitle(let titleSubtitleCellViewModel):
             let cell = tableView.dequeueReusableCell(withIdentifier: "TitleSubtitleCell", for: indexPath) as! TitleSubtitleCell
             cell.update(with: titleSubtitleCellViewModel)
+            cell.subtitleTextField.delegate = self
             return cell
         case .titleImage:
             return UITableViewCell()
         }
     }
     
+}
+
+
+extension AddEventViewController: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let currentText = textField.text else { return false }
+        let text = currentText + string
+        let point = textField.convert(textField.bounds.origin, to: sharedView.tableView)
+        if let indexPath = sharedView.tableView.indexPathForRow(at: point) {
+            viewModel.updateCell(indexPath: indexPath, subtitle: text)
+        }
+        return true
+    }
 }

@@ -8,9 +8,17 @@ import UIKit
 
 final class TitleSubtitleCell: UITableViewCell {
     private let titleLabel = UILabel()
-    private let subtitleTextField = UITextField()
+    let subtitleTextField = UITextField()
     private let verticalStackView = UIStackView()
     let constant: CGFloat = 15
+    
+    private let datePickerView = UIDatePicker()
+    private let toolbar = UIToolbar(frame: .init(x: 0, y: 0, width: 100, height: 44))
+    lazy var doneButton: UIBarButtonItem = {
+     return UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(tappedDone))
+    }()
+    
+    private var viewModel: TitleSubtitleCellViewModel?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -20,9 +28,12 @@ final class TitleSubtitleCell: UITableViewCell {
     }
     
     func update(with viewModel: TitleSubtitleCellViewModel) {
+        self.viewModel = viewModel
         titleLabel.text = viewModel.title
         subtitleTextField.text = viewModel.subtitle
         subtitleTextField.placeholder = viewModel.placeholder
+        subtitleTextField.inputView = viewModel.type == .text ? nil : datePickerView
+        subtitleTextField.inputAccessoryView = viewModel.type == .text ? nil : toolbar
     }
     
     private func setupViews() {
@@ -33,6 +44,10 @@ final class TitleSubtitleCell: UITableViewCell {
         [verticalStackView, titleLabel, subtitleTextField].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
+        
+        datePickerView.preferredDatePickerStyle = .wheels
+        datePickerView.datePickerMode = .date
+        toolbar.setItems([doneButton], animated: false)
     }
     
     private func setupHierarchy() {
@@ -48,6 +63,10 @@ final class TitleSubtitleCell: UITableViewCell {
             verticalStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -constant),
             verticalStackView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: constant)
         ])
+    }
+    
+    @objc func tappedDone() {
+        viewModel?.update(datePickerView.date)
     }
     
     required init?(coder: NSCoder) {
