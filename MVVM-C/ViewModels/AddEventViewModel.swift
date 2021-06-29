@@ -14,7 +14,6 @@ final class AddEventViewModel {
     
     enum Cell {
         case titleSubtitle(TitleSubtitleCellViewModel)
-        case titleImage
     }
     
     
@@ -28,6 +27,11 @@ final class AddEventViewModel {
             ),
             .titleSubtitle(
                 TitleSubtitleCellViewModel(title: "Date", subtitle: "", placeholder: "Select a name", type: .date, onCellUpdate: { [weak self] in
+                    self?.onUpdate()
+                })
+            ),
+            .titleSubtitle(
+                TitleSubtitleCellViewModel(title: "Background", subtitle: "", placeholder: "Select a name", type: .image, onCellUpdate: { [weak self] in
                     self?.onUpdate()
                 })
             )
@@ -57,8 +61,6 @@ final class AddEventViewModel {
         switch cells[indexPath.row] {
         case .titleSubtitle(let titleSubtitleCellViewModel):
             titleSubtitleCellViewModel.update(subtitle)
-        case .titleImage:
-            break
         }
     }
     

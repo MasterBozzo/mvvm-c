@@ -11,6 +11,7 @@ final class TitleSubtitleCellViewModel {
     enum CellType {
         case text
         case date
+        case image
     }
     
     let title: String

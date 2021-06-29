@@ -18,6 +18,8 @@ final class TitleSubtitleCell: UITableViewCell {
      return UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(tappedDone))
     }()
     
+    private let photoImageView = UIImageView()
+    
     private var viewModel: TitleSubtitleCellViewModel?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -34,6 +36,9 @@ final class TitleSubtitleCell: UITableViewCell {
         subtitleTextField.placeholder = viewModel.placeholder
         subtitleTextField.inputView = viewModel.type == .text ? nil : datePickerView
         subtitleTextField.inputAccessoryView = viewModel.type == .text ? nil : toolbar
+        photoImageView.isHidden = viewModel.type != .image
+        subtitleTextField.isHidden = viewModel.type == .image
+        verticalStackView.spacing = viewModel.type == .image ? 15 : verticalStackView.spacing
     }
     
     private func setupViews() {
@@ -48,20 +53,24 @@ final class TitleSubtitleCell: UITableViewCell {
         datePickerView.preferredDatePickerStyle = .wheels
         datePickerView.datePickerMode = .date
         toolbar.setItems([doneButton], animated: false)
+        photoImageView.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        photoImageView.layer.cornerRadius = 10
     }
     
     private func setupHierarchy() {
         contentView.addSubview(verticalStackView)
         verticalStackView.addArrangedSubview(titleLabel)
         verticalStackView.addArrangedSubview(subtitleTextField)
+        verticalStackView.addArrangedSubview(photoImageView)
     }
     
     private func setupLayout() {
         NSLayoutConstraint.activate([
             verticalStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: constant),
-            verticalStackView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: constant),
+            verticalStackView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -constant),
             verticalStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -constant),
-            verticalStackView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: constant)
+            verticalStackView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: constant),
+            photoImageView.heightAnchor.constraint(equalToConstant: 200)
         ])
     }
     
