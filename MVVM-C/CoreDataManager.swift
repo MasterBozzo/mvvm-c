@@ -27,7 +27,7 @@ final class CoreDataManager {
         event.setValue(name, forKey: "name")
         let imageData = image.jpegData(compressionQuality: 1)
         event.setValue(imageData, forKey: "image")
-        event.setValue(date, forKey: "data")
+        event.setValue(date, forKey: "date")
         
         do {
             try moc.save()
