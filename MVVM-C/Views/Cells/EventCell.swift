@@ -45,34 +45,41 @@ class EventCell: UITableViewCell {
         [yearLabel,
          monthLabel,
          weekLabel,
-         daysLabel,
-         dateLabel].forEach {
-            $0.font = UIFont.systemFont(ofSize: 22, weight: .medium)
+         daysLabel].forEach {
+            $0.font = UIFont.systemFont(ofSize: 28, weight: .medium)
             $0.textColor = .white
          }
         
-        eventNameLabel.font = UIFont.systemFont(ofSize: 28, weight: .bold)
+        dateLabel.font = UIFont.systemFont(ofSize: 22, weight: .medium)
+        dateLabel.textColor = .white
+        eventNameLabel.font = UIFont.systemFont(ofSize: 34, weight: .bold)
+        eventNameLabel.textColor = .white
         
         verticalStackView.axis = .vertical
-        
+        verticalStackView.alignment = .trailing
     }
     
     private func setupHierarchy() {
         contentView.addSubview(backgroundImageView)
         contentView.addSubview(verticalStackView)
+        contentView.addSubview(eventNameLabel)
         
-        [yearLabel,
-         monthLabel,
-         weekLabel,
-         daysLabel,
-         dateLabel].forEach {
-            verticalStackView.addSubview($0)
-         }
+        verticalStackView.addArrangedSubview(yearLabel)
+        verticalStackView.addArrangedSubview(monthLabel)
+        verticalStackView.addArrangedSubview(weekLabel)
+        verticalStackView.addArrangedSubview(daysLabel)
+        verticalStackView.addArrangedSubview(UIView())
+        verticalStackView.addArrangedSubview(dateLabel)
     }
     
     private func setupLayout() {
-        backgroundImageView.pinToSuperviewEdges()
-        verticalStackView.pinToSuperviewEdges([.right, .bottom, .top], constant: 15)
+        backgroundImageView.pinToSuperviewEdges([.left, .top, .right])
+        let bottomConstraint = backgroundImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+        bottomConstraint.priority = .required - 1
+        bottomConstraint.isActive = true
+                
+        backgroundImageView.heightAnchor.constraint(equalToConstant: 250).isActive = true
+        verticalStackView.pinToSuperviewEdges([.top, .right, .bottom], constant: 15)
         eventNameLabel.pinToSuperviewEdges([.left, .bottom], constant: 15)
     }
     
