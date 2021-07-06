@@ -32,6 +32,7 @@
 		84FDFF7E26935E6400B7AF5B /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FDFF7D26935E6400B7AF5B /* EventCell.swift */; };
 		84FDFF832693637400B7AF5B /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FDFF822693637400B7AF5B /* UIView+Extension.swift */; };
 		84FDFF88269373AF00B7AF5B /* EventListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FDFF87269373AF00B7AF5B /* EventListView.swift */; };
+		84FDFF8D2693973D00B7AF5B /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FDFF8C2693973D00B7AF5B /* Date+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,7 @@
 		84FDFF7D26935E6400B7AF5B /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
 		84FDFF822693637400B7AF5B /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		84FDFF87269373AF00B7AF5B /* EventListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListView.swift; sourceTree = "<group>"; };
+		84FDFF8C2693973D00B7AF5B /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +175,7 @@
 			children = (
 				84FDFF012684F77100B7AF5B /* UIColor+Extensions.swift */,
 				84FDFF822693637400B7AF5B /* UIView+Extension.swift */,
+				84FDFF8C2693973D00B7AF5B /* Date+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84FDFF64268A3C3300B7AF5B /* TitleSubtitleCellViewModel.swift in Sources */,
+				84FDFF8D2693973D00B7AF5B /* Date+Extensions.swift in Sources */,
 				84FDFEF32684E7CD00B7AF5B /* AppCoordinator.swift in Sources */,
 				84FDFEFD2684EBD000B7AF5B /* EventListViewController.swift in Sources */,
 				84FDFEC02684E78E00B7AF5B /* AppDelegate.swift in Sources */,

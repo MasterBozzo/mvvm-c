@@ -10,6 +10,8 @@ import CoreData
 
 final class CoreDataManager {
     
+    static let shared = CoreDataManager()
+    
     lazy var persistentContainer: NSPersistentContainer = {
         let persistentContainer = NSPersistentContainer(name: "MVVM-C")
         persistentContainer.loadPersistentStores { (_, err) in
