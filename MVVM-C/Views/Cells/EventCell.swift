@@ -10,7 +10,7 @@ import UIKit
 
 class EventCell: UITableViewCell {
     
-    private let timeRemainingLabels = [UILabel(), UILabel(), UILabel(), UILabel()]
+    private let timeRemainingStackView = TimeRemainingStackView()
     private let dateLabel = UILabel()
     private let eventNameLabel = UILabel()
     private let backgroundImageView = UIImageView()
@@ -28,17 +28,16 @@ class EventCell: UITableViewCell {
     }
     
     private func setupViews() {
-        (timeRemainingLabels + [dateLabel,
+        
+        timeRemainingStackView.setup()
+        
+        [dateLabel,
          eventNameLabel,
          backgroundImageView,
-         verticalStackView]).forEach {
+         verticalStackView].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
         
-        timeRemainingLabels.forEach {
-            $0.font = UIFont.systemFont(ofSize: 28, weight: .medium)
-            $0.textColor = .white
-         }
         
         dateLabel.font = UIFont.systemFont(ofSize: 22, weight: .medium)
         dateLabel.textColor = .white
@@ -54,9 +53,7 @@ class EventCell: UITableViewCell {
         contentView.addSubview(verticalStackView)
         contentView.addSubview(eventNameLabel)
         
-        timeRemainingLabels.forEach {
-            verticalStackView.addArrangedSubview($0)
-        }
+        verticalStackView.addArrangedSubview(timeRemainingStackView)
         verticalStackView.addArrangedSubview(UIView())
         verticalStackView.addArrangedSubview(dateLabel)
     }
@@ -73,13 +70,8 @@ class EventCell: UITableViewCell {
     }
     
     func update(with viewModel: EventCellViewModel) {
-        
-        timeRemainingLabels.forEach {
-            $0.text = ""
-        }
-      
-        viewModel.timeRemaingingStrings.enumerated().forEach {
-            timeRemainingLabels[$0.offset].text = $0.element
+        if let timeRemainingViewModel = viewModel.timeRemainingViewModel {
+            timeRemainingStackView.update(with: timeRemainingViewModel)
         }
         
         dateLabel.text = viewModel.dateText

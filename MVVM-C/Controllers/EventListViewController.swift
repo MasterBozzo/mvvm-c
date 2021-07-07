@@ -36,6 +36,7 @@ class EventListViewController: UIViewController {
         navigationItem.title = viewModel.title
         navigationController?.navigationBar.prefersLargeTitles = true
         sharedView.tableView.dataSource = self
+        sharedView.tableView.delegate = self
         sharedView.tableView.register(EventCell.self, forCellReuseIdentifier: "eventCell")
     }
     
@@ -45,6 +46,7 @@ class EventListViewController: UIViewController {
     
 }
 
+// MARK: TableView DataSource
 extension EventListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -58,5 +60,13 @@ extension EventListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.numberOfRows()
+    }
+}
+
+// MARK: TableView Delegate
+extension EventListViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.didSelectRow(at: indexPath)
     }
 }
