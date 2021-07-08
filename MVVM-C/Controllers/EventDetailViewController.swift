@@ -39,6 +39,8 @@ final class EventDetailViewController: UIViewController {
         backgroundImage.translatesAutoresizingMaskIntoConstraints = false
         backgroundImage.contentMode = .scaleAspectFill
         timeRemainingStackView.setup()
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "pencil"), style: .plain, target: viewModel, action: #selector(viewModel.editButtonTapped))
     }
     
     private func setupHierarchy() {
