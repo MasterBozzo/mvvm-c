@@ -30,6 +30,7 @@ final class EventListViewModel {
     }
     
     func reload() {
+        EventCellViewModel.imageCache.removeAllObjects()
         let events = coreDataManager.fetchEvents()
         
         cells = events.map {

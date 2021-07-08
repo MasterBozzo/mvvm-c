@@ -14,7 +14,7 @@ final class EditEventCoordinator: Coordinator {
     private var completion: (UIImage) -> Void  = { _ in }
     private let event: Event
     
-    var parentCoordinator: EventListCoordinator?
+    var parentCoordinator: EventDetailCoordinator?
     
     init(event: Event,
          navigationController: UINavigationController) {
@@ -38,9 +38,9 @@ final class EditEventCoordinator: Coordinator {
         parentCoordinator?.childDidFinish(self)
     }
     
-    func didFinishSaveEvent() {
-        parentCoordinator?.onSaveEvent()
-        navigationController.dismiss(animated: true, completion: nil)
+    func didFinishUpdateEvent() {
+        parentCoordinator?.onUpdateEvent()
+        navigationController.popViewController(animated: true)
     }
     
     func showImagePicker(completion: @escaping (UIImage) -> Void) {
@@ -49,6 +49,7 @@ final class EditEventCoordinator: Coordinator {
         imagePickerCoordinator.parentCoordinator = self
         imagePickerCoordinator.onFinishPicking = { image in
             completion(image)
+            self.navigationController.dismiss(animated: true, completion: nil)
         }
         childCoordinators.append(imagePickerCoordinator)
         imagePickerCoordinator.start()
